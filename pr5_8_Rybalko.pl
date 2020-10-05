@@ -1,9 +1,9 @@
 
-%ЗАДАЧА 8
-% примечание - пустые строки не учитываются и на выполнение программы не
-% влияют
+%Р—РђР”РђР§Рђ 8
+% РїСЂРёРјРµС‡Р°РЅРёРµ - РїСѓСЃС‚С‹Рµ СЃС‚СЂРѕРєРё РЅРµ СѓС‡РёС‚С‹РІР°СЋС‚СЃСЏ Рё РЅР° РІС‹РїРѕР»РЅРµРЅРёРµ РїСЂРѕРіСЂР°РјРјС‹ РЅРµ
+% РІР»РёСЏСЋС‚
 pr5_8:-
-    see('c:/Users/alexm/Documents/Prolog/Новый текстовый документ.txt'),
+    see('c:/Users/alexm/Documents/Prolog/ГЌГ®ГўГ»Г© ГІГҐГЄГ±ГІГ®ГўГ»Г© Г¤Г®ГЄГіГ¬ГҐГ­ГІ.txt'),
     read_list_str(OutList),
     seen,
     write_list(OutList),
@@ -14,7 +14,7 @@ pr5_8:-
 %              tell('c:/Users/alexm/Documents/Prolog/111.txt'),
 %              write_list_str(NewList),told.
 
-%считает количество символов A в строке
+%СЃС‡РёС‚Р°РµС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃРёРјРІРѕР»РѕРІ A РІ СЃС‚СЂРѕРєРµ
 count_A([],OutNumber,OutNumber):-!.
 
 count_A([65|T],OutNumber,InitNumber):-
@@ -24,20 +24,20 @@ count_A([65|T],OutNumber,InitNumber):-
 count_A([_|T],OutNumber,InitNumber):-
     count_A(T,OutNumber,InitNumber),!.
 
-%создаёт список из количеств символов А
+%СЃРѕР·РґР°С‘С‚ СЃРїРёСЃРѕРє РёР· РєРѕР»РёС‡РµСЃС‚РІ СЃРёРјРІРѕР»РѕРІ Рђ
 list_count_A([],OutList,OutList):-!.
 list_count_A([H|T],InitList,OutList):-
     count_A(H,0,OutNumber_A),
     append(InitList,[OutNumber_A],NewList),
     list_count_A(T,NewList,OutList).
 
-%сумма элементов списка
+%СЃСѓРјРјР° СЌР»РµРјРµРЅС‚РѕРІ СЃРїРёСЃРєР°
 list_sum([],OutNum,OutNum):-!.
 list_sum([H|T],InitNum,OutNum):-
     NewNum is H + InitNum,
     list_sum(T,NewNum,OutNum).
 
-%длина списка
+%РґР»РёРЅР° СЃРїРёСЃРєР°
 len_list([],OutNum,OutNum):-!.
 len_list([_|T],OutNum,InitNum):-
     NewNum is OutNum + 1,
@@ -52,7 +52,7 @@ task_8(InputList,YourList):-
     Average_A is Num_A/Num_list,
     sum_str_A(NewList,OutList_A,[],YourList,Average_A).
 
-%Создаёт список из строк, в которых символов А больше среднего.
+%РЎРѕР·РґР°С‘С‚ СЃРїРёСЃРѕРє РёР· СЃС‚СЂРѕРє, РІ РєРѕС‚РѕСЂС‹С… СЃРёРјРІРѕР»РѕРІ Рђ Р±РѕР»СЊС€Рµ СЃСЂРµРґРЅРµРіРѕ.
 sum_str_A([],[],OutList,OutList,_):-!.
 sum_str_A([H|T],[H1|T1],InitList,OutList,Average_A):-
     H1 > Average_A,
@@ -77,14 +77,14 @@ read_list_str(List,List,1):-!.
 read_list_str(Cur_list,List,0):-
 	read_str(A,N,Flag),append(Cur_list,[A],C_l),read_list_str(C_l,List,Flag).
 
-%вывод списка
+%РІС‹РІРѕРґ СЃРїРёСЃРєР°
 write_list([X|Y]):- writeln(X), write_list(Y).
 write_list([]).
 
 
 
 
-%make_beautiful_list_without_enters да да красивый список!!!
+%make_beautiful_list_without_enters РґР° РґР° РєСЂР°СЃРёРІС‹Р№ СЃРїРёСЃРѕРє!!!
 beau_list([],OutList,OutList):-!.
 beau_list([H|T],OutList,InitList):-
     len_list(H,0,OutNum),
