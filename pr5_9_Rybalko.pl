@@ -1,25 +1,25 @@
 
-%ЗАДАЧА 9
-% примечание - пустые строки не учитываются и на выполнение программы не
-% влияют
+%Р—РђР”РђР§Рђ 9
+% РїСЂРёРјРµС‡Р°РЅРёРµ - РїСѓСЃС‚С‹Рµ СЃС‚СЂРѕРєРё РЅРµ СѓС‡РёС‚С‹РІР°СЋС‚СЃСЏ Рё РЅР° РІС‹РїРѕР»РЅРµРЅРёРµ РїСЂРѕРіСЂР°РјРјС‹ РЅРµ
+% РІР»РёСЏСЋС‚
 pr5_9:-
     see('c:/Users/alexm/Documents/Prolog/pr5_9_Rybalko.txt'),
     read_list_str(OutList),
     seen,
     task_9(OutList,Word,Max),
-    write("Самое частое слово:"),write(Word),nl,
-    write("Частота:"),write(Max),nl.
+    write("РЎР°РјРѕРµ С‡Р°СЃС‚РѕРµ СЃР»РѕРІРѕ:"),write(Word),nl,
+    write("Р§Р°СЃС‚РѕС‚Р°:"),write(Max),nl.
 
 
 %              tell('c:/Users/alexm/Documents/Prolog/111.txt'),
 %              write_list_str(NewList),told.
 
 task_9(InputList,Word,Max):-
-    beau_list(InputList,[],NewList),% удаляем enter's
-    all_make_list_words(NewList,[],OutWord), % удаляем пробелы и составляем список слов
-    count_one_word(OutWord,[],[],WordList,FrequencyList), %Составляем список слов и этому списку - список частоты встречаемости соответственно
-    max_num(Max, 0, FrequencyList, 0, 0,Index), % максимальная частота
-    index_word(Index,WordList,0,[],Word). % по индексу слова максимальной частоты находим это слово в списке слов
+    beau_list(InputList,[],NewList),% СѓРґР°Р»СЏРµРј enter's
+    all_make_list_words(NewList,[],OutWord), % СѓРґР°Р»СЏРµРј РїСЂРѕР±РµР»С‹ Рё СЃРѕСЃС‚Р°РІР»СЏРµРј СЃРїРёСЃРѕРє СЃР»РѕРІ
+    count_one_word(OutWord,[],[],WordList,FrequencyList), %РЎРѕСЃС‚Р°РІР»СЏРµРј СЃРїРёСЃРѕРє СЃР»РѕРІ Рё СЌС‚РѕРјСѓ СЃРїРёСЃРєСѓ - СЃРїРёСЃРѕРє С‡Р°СЃС‚РѕС‚С‹ РІСЃС‚СЂРµС‡Р°РµРјРѕСЃС‚Рё СЃРѕРѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕ
+    max_num(Max, 0, FrequencyList, 0, 0,Index), % РјР°РєСЃРёРјР°Р»СЊРЅР°СЏ С‡Р°СЃС‚РѕС‚Р°
+    index_word(Index,WordList,0,[],Word). % РїРѕ РёРЅРґРµРєСЃСѓ СЃР»РѕРІР° РјР°РєСЃРёРјР°Р»СЊРЅРѕР№ С‡Р°СЃС‚РѕС‚С‹ РЅР°С…РѕРґРёРј СЌС‚Рѕ СЃР»РѕРІРѕ РІ СЃРїРёСЃРєРµ СЃР»РѕРІ
 
 make_list_barel(OutList,OutList):-!.
 
@@ -120,14 +120,14 @@ update_elem_list(N,InitNum,[H|T],InitList,OutList):-
 
 
 
-%сравниваем элементы в списках на равных позициях
+%Г±Г°Г ГўГ­ГЁГўГ ГҐГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Гў Г±ГЇГЁГ±ГЄГ Гµ Г­Г  Г°Г ГўГ­Г»Гµ ГЇГ®Г§ГЁГ¶ГЁГїГµ
 check_lists([],[]):-!.
 check_lists([H1|T1],[H2|T2]):-
     H1 = H2,
     check_lists(T1,T2).
 
 
-%длина списка
+%Г¤Г«ГЁГ­Г  Г±ГЇГЁГ±ГЄГ 
 len_list([],OutNum,OutNum):-!.
 len_list([_|T],OutNum,InitNum):-
     NewNum is OutNum + 1,
@@ -150,14 +150,14 @@ read_list_str(List,List,1):-!.
 read_list_str(Cur_list,List,0):-
 	read_str(A,N,Flag),append(Cur_list,[A],C_l),read_list_str(C_l,List,Flag).
 
-%вывод списка
+%ГўГ»ГўГ®Г¤ Г±ГЇГЁГ±ГЄГ 
 write_list([X|Y]):- writeln(X), write_list(Y).
 write_list([]).
 
 
 
 
-%make_beautiful_list_without_enters да да красивый список!!!
+%make_beautiful_list_without_enters Г¤Г  Г¤Г  ГЄГ°Г Г±ГЁГўГ»Г© Г±ГЇГЁГ±Г®ГЄ!!!
 beau_list([],OutList,OutList):-!.
 beau_list([H|T],OutList,InitList):-
     len_list(H,0,OutNum),
