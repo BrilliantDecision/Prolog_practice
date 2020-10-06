@@ -1,13 +1,13 @@
 
-% 2 ИНДИВИДУАЛКА
+% 2 РРќР”РР’РР”РЈРђР›РљРђ
 second_individual(InList,OutList):-
     count_frequency_elems(InList,[],[],ElemList,FrequencyList),
     make_frequency_list(ElemList,FrequencyList,[],OutList).
 
 
-% список элементов, встречающихся в исходном более трёх раз(превый
-% аргумент - список уникальных элементов, второй аргумент - список
-% частоты встречаемости этих элементов в исходном списке)
+% СЃРїРёСЃРѕРє СЌР»РµРјРµРЅС‚РѕРІ, РІСЃС‚СЂРµС‡Р°СЋС‰РёС…СЃСЏ РІ РёСЃС…РѕРґРЅРѕРј Р±РѕР»РµРµ С‚СЂС‘С… СЂР°Р·(РїСЂРµРІС‹Р№
+% Р°СЂРіСѓРјРµРЅС‚ - СЃРїРёСЃРѕРє СѓРЅРёРєР°Р»СЊРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ, РІС‚РѕСЂРѕР№ Р°СЂРіСѓРјРµРЅС‚ - СЃРїРёСЃРѕРє
+% С‡Р°СЃС‚РѕС‚С‹ РІСЃС‚СЂРµС‡Р°РµРјРѕСЃС‚Рё СЌС‚РёС… СЌР»РµРјРµРЅС‚РѕРІ РІ РёСЃС…РѕРґРЅРѕРј СЃРїРёСЃРєРµ)
 make_frequency_list([],[],OutList,OutList):-!.
 make_frequency_list([H1|T1],[H2|T2], InitList, OutList):-
     H2 > 3,
@@ -18,8 +18,8 @@ make_frequency_list([H1|T1],[H2|T2], InitList, OutList):-
     make_frequency_list(T1, T2, InitList, OutList).
 
 
-% формирует список частоты встречаемости элементов и список самих
-% элементов (список уникальных элементов)
+% С„РѕСЂРјРёСЂСѓРµС‚ СЃРїРёСЃРѕРє С‡Р°СЃС‚РѕС‚С‹ РІСЃС‚СЂРµС‡Р°РµРјРѕСЃС‚Рё СЌР»РµРјРµРЅС‚РѕРІ Рё СЃРїРёСЃРѕРє СЃР°РјРёС…
+% СЌР»РµРјРµРЅС‚РѕРІ (СЃРїРёСЃРѕРє СѓРЅРёРєР°Р»СЊРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ)
 count_frequency_elems([],ElemList,FrequencyList,ElemList,FrequencyList):-!.
 count_frequency_elems([H|T],InitElemList,InitFrequencyList,ElemList,FrequencyList):-
     check_list_elem(InitElemList,H),
@@ -32,7 +32,7 @@ count_frequency_elems([H|T],InitElemList,InitFrequencyList,ElemList,FrequencyLis
     append(InitFrequencyList,[1],UpdatedFrequencyList),
     count_frequency_elems(T,UpdatedElemList,UpdatedFrequencyList,ElemList,FrequencyList).
 
-%Определяет индекс элемента в списке
+%РћРїСЂРµРґРµР»СЏРµС‚ РёРЅРґРµРєСЃ СЌР»РµРјРµРЅС‚Р° РІ СЃРїРёСЃРєРµ
 index_elem([],_,Index,Index):-!.
 index_elem([H|T],Elem,InitIndex,Index):-
     check_elems(H,Elem),
@@ -42,7 +42,7 @@ index_elem([H|T],Elem,InitIndex,Index):-
     NewIndex is InitIndex + 1,
     index_elem(T,Elem,NewIndex,Index).
 
-% Увеличивает элемент, стоящий на N позиции на 1.
+% РЈРІРµР»РёС‡РёРІР°РµС‚ СЌР»РµРјРµРЅС‚, СЃС‚РѕСЏС‰РёР№ РЅР° N РїРѕР·РёС†РёРё РЅР° 1.
 update_elem_list(_,_,[],OutList,OutList):-!.
 update_elem_list(N,InitNum,[H|T],InitList,OutList):-
     InitNum = N,
@@ -57,11 +57,11 @@ update_elem_list(N,InitNum,[H|T],InitList,OutList):-
     update_elem_list(N,NewNum,T,NewList,OutList),!.
 
 
-% сравниваем 2 элемента
+% СЃСЂР°РІРЅРёРІР°РµРј 2 СЌР»РµРјРµРЅС‚Р°
 check_elems(N1,N2):-
     N1 = N2, ! ; fail.
 
-% проверяет, есть ли элемент в списке
+% РїСЂРѕРІРµСЂСЏРµС‚, РµСЃС‚СЊ Р»Рё СЌР»РµРјРµРЅС‚ РІ СЃРїРёСЃРєРµ
 check_list_elem([],_):-fail.
 check_list_elem([H|T],Elem):-
     check_elems(H,Elem),
