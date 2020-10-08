@@ -1,7 +1,7 @@
 
-% 3 ИНДИВИДУАЛКА 10 ЗАДАНИЕ
+% 3 РРќР”РР’РР”РЈРђР›РљРђ 10 Р—РђР”РђРќРР•
 
-%Зашифровывает текст
+%Р—Р°С€РёС„СЂРѕРІС‹РІР°РµС‚ С‚РµРєСЃС‚
 third_individual_shifr:-
     see('c:/Users/alexm/Documents/Prolog/third_individual_text.txt'),
     read_list_str(OutList),
@@ -15,7 +15,7 @@ third_individual_shifr:-
     write_list_str(ShifrText),
     told.
 
-%Расшифровывает текст
+%Р Р°СЃС€РёС„СЂРѕРІС‹РІР°РµС‚ С‚РµРєСЃС‚
 third_individual_deshifr:-
     see('c:/Users/alexm/Documents/Prolog/third_individual_shifr.txt'),
     read_list_str(OutList),
@@ -29,7 +29,7 @@ third_individual_deshifr:-
     write_list_str(DeshifrText),
     told.
 
-%Шифрует весь текст
+%РЁРёС„СЂСѓРµС‚ РІРµСЃСЊ С‚РµРєСЃС‚
 shifr_text(InList,Key,OutList):-
     beau_list(InList,[],NewInList),
     generate_list_str(97,[],VizinerTable),
@@ -37,7 +37,7 @@ shifr_text(InList,Key,OutList):-
     generate_elems(97,123,[],ElemsList),
     shifr_all(NewInList,KeysList,ElemsList,VizinerTable,[],OutList).
 
-%Деифрует весь текст
+%Р”РµРёС„СЂСѓРµС‚ РІРµСЃСЊ С‚РµРєСЃС‚
 deshifr_text(InList,Key,OutList):-
     beau_list(InList,[],NewInList),
     generate_list_str(97,[],VizinerTable),
@@ -45,14 +45,14 @@ deshifr_text(InList,Key,OutList):-
     generate_elems(97,123,[],ElemsList),
     deshifr_all(NewInList,KeysList,ElemsList,VizinerTable,[],OutList).
 
-%Шифрует строки
+%РЁРёС„СЂСѓРµС‚ СЃС‚СЂРѕРєРё
 shifr_all([],[],_,_,OutList,OutList):-!.
 shifr_all([H|T],[H1|T1],ElemsList,VizinerTable,InitList,OutList):-
     shifr(H,H1,ElemsList,VizinerTable,[],NewList),
     append(InitList,[NewList],NewStr),
     shifr_all(T,T1,ElemsList,VizinerTable,NewStr,OutList).
 
-%Шифрует строки
+%Р”РµС€РёС„СЂСѓРµС‚ СЃС‚СЂРѕРєРё
 deshifr_all([],[],_,_,OutList,OutList):-!.
 deshifr_all([H|T],[H1|T1],ElemsList,VizinerTable,InitList,OutList):-
     deshifr(H,H1,ElemsList,VizinerTable,[],NewList),
@@ -60,7 +60,7 @@ deshifr_all([H|T],[H1|T1],ElemsList,VizinerTable,InitList,OutList):-
     deshifr_all(T,T1,ElemsList,VizinerTable,NewStr,OutList).
 
 
-%Шифрует строку
+%РЁРёС„СЂСѓРµС‚ СЃС‚СЂРѕРєСѓ
 shifr([],[],_,_,OutList,OutList):-!.
 shifr([H|T],[H1|T1],ElemsList,VizinerTable,InitList,OutList):-
     H > 96, H < 123,
@@ -73,7 +73,7 @@ shifr([H|T],[H1|T1],ElemsList,VizinerTable,InitList,OutList):-
     append(InitList,[H],NewList),
     shifr(T,T1,ElemsList,VizinerTable,NewList,OutList).
 
-%Дешифрует строку
+%Р”РµС€РёС„СЂСѓРµС‚ СЃС‚СЂРѕРєСѓ
 deshifr([],[],_,_,OutList,OutList):-!.
 deshifr([H|T],[H1|T1],ElemsList,VizinerTable,InitList,OutList):-
     H > 96, H < 123,
@@ -88,12 +88,12 @@ deshifr([H|T],[H1|T1],ElemsList,VizinerTable,InitList,OutList):-
     deshifr(T,T1,ElemsList,VizinerTable,NewList,OutList).
 
 
-%Определяет элемент в таблице Вижинера
+%РћРїСЂРµРґРµР»СЏРµС‚ СЌР»РµРјРµРЅС‚ РІ С‚Р°Р±Р»РёС†Рµ Р’РёР¶РёРЅРµСЂР°
 viziner_elem(VizinerTable,IndexElem,IndexKey,Elem):-
     viziner_str(VizinerTable,0,IndexKey,[],OutList),
     viziner_str(OutList,0,IndexElem,[],Elem).
 
-% Определяет элемент по индексу
+% РћРїСЂРµРґРµР»СЏРµС‚ СЌР»РµРјРµРЅС‚ РїРѕ РёРЅРґРµРєСЃСѓ
 viziner_str([],_,_,OutList,OutList):-!.
 viziner_str([H|_],IndexKey,IndexKey,_,OutList):-
     viziner_str([],IndexKey,IndexKey,H,OutList),!.
@@ -104,7 +104,7 @@ viziner_str([_|T],InitIndex,IndexKey,InitList,OutList):-
 
 
 
-% Делает список ключей для каждой строки
+% Р”РµР»Р°РµС‚ СЃРїРёСЃРѕРє РєР»СЋС‡РµР№ РґР»СЏ РєР°Р¶РґРѕР№ СЃС‚СЂРѕРєРё
 create_keys_str([],_,OutList,OutList):-!.
 create_keys_str([H|T],Key,InitList, OutList):-
     create_key(H,Key,Key,0,[],NewList),
@@ -112,7 +112,7 @@ create_keys_str([H|T],Key,InitList, OutList):-
     create_keys_str(T,Key,NewStrList,OutList).
 
 
-% генерирует ключ для строки символов с учётом только латиницы
+% РіРµРЅРµСЂРёСЂСѓРµС‚ РєР»СЋС‡ РґР»СЏ СЃС‚СЂРѕРєРё СЃРёРјРІРѕР»РѕРІ СЃ СѓС‡С‘С‚РѕРј С‚РѕР»СЊРєРѕ Р»Р°С‚РёРЅРёС†С‹
 create_key([],_,_,_,OutListKey,OutListKey):-!.
 create_key(InputList,[],KeyList,_,InitListKey,OutListKey):-
     create_key(InputList,KeyList,KeyList,0,InitListKey,OutListKey),!.
@@ -130,7 +130,7 @@ create_key([H|T],[K|TK],KeyList,Index_key_list,InitListKey,OutListKey):-
 
 
 
-% Генерирует таблицу Вижинера
+% Р“РµРЅРµСЂРёСЂСѓРµС‚ С‚Р°Р±Р»РёС†Сѓ Р’РёР¶РёРЅРµСЂР°
 generate_list_str(123,OutList,OutList):-!.
 generate_list_str(InitNum,InitList,OutList):-
     generate_str(InitNum,0,[],OutListLatinica),
@@ -140,8 +140,8 @@ generate_list_str(InitNum,InitList,OutList):-
 
 
 
-% Генерирует строку из кодов символов строчных букв латиницы со сдвигом
-% InitNum влево
+% Р“РµРЅРµСЂРёСЂСѓРµС‚ СЃС‚СЂРѕРєСѓ РёР· РєРѕРґРѕРІ СЃРёРјРІРѕР»РѕРІ СЃС‚СЂРѕС‡РЅС‹С… Р±СѓРєРІ Р»Р°С‚РёРЅРёС†С‹ СЃРѕ СЃРґРІРёРіРѕРј
+% InitNum РІР»РµРІРѕ
 generate_str(_,26,OutList,OutList):-!.
 generate_str(InitNum,Counter,InitList,OutList):-
     InitNum > 122,
@@ -176,12 +176,12 @@ read_list_str(Cur_list,List,0):-
 	read_str(A,N,Flag),append(Cur_list,[A],C_l),read_list_str(C_l,List,Flag).
 
 
-%вывод списка
+%РІС‹РІРѕРґ СЃРїРёСЃРєР°
 write_list([X|Y]):- writeln(X), write_list(Y).
 write_list([]).
 
 
-%make_beautiful_list_without_enters да да красивый список!!!
+%make_beautiful_list_without_enters РґР° РґР° РєСЂР°СЃРёРІС‹Р№ СЃРїРёСЃРѕРє!!!
 beau_list([],OutList,OutList):-!.
 beau_list([H|T],OutList,InitList):-
     len_list(H,0,OutNum),
@@ -192,14 +192,14 @@ beau_list([H|T],OutList,InitList):-
     beau_list(T,OutList,InitList),!.
 
 
-%длина списка
+%РґР»РёРЅР° СЃРїРёСЃРєР°
 len_list([],OutNum,OutNum):-!.
 len_list([_|T],OutNum,InitNum):-
     NewNum is OutNum + 1,
     len_list(T,NewNum,InitNum).
 
 
-%генерирует список чисел от n1 до n2
+%РіРµРЅРµСЂРёСЂСѓРµС‚ СЃРїРёСЃРѕРє С‡РёСЃРµР» РѕС‚ n1 РґРѕ n2
 generate_elems(N,N,OutList,OutList):-!.
 generate_elems(N1,N2,InitList,OutList):-
     append(InitList,[N1],NewList),
@@ -207,7 +207,7 @@ generate_elems(N1,N2,InitList,OutList):-
     generate_elems(NewN,N2,NewList,OutList).
 
 
-%Определяет индекс элемента в списке
+%РћРїСЂРµРґРµР»СЏРµС‚ РёРЅРґРµРєСЃ СЌР»РµРјРµРЅС‚Р° РІ СЃРїРёСЃРєРµ
 index_elem([],_,Index,Index):-!.
 index_elem([Elem|_],Elem,InitIndex,Index):-
     index_elem([],Elem,InitIndex,Index),!.
@@ -215,13 +215,13 @@ index_elem([_|T],Elem,InitIndex,Index):-
     NewIndex is InitIndex + 1,
     index_elem(T,Elem,NewIndex,Index).
 
-%из списка списков с одним элементом делает список
+%РёР· СЃРїРёСЃРєР° СЃРїРёСЃРєРѕРІ СЃ РѕРґРЅРёРј СЌР»РµРјРµРЅС‚РѕРј РґРµР»Р°РµС‚ СЃРїРёСЃРѕРє
 make_one_list([],OutList,OutList):-!.
 make_one_list([H|T],_,OutList):-
     append([],H,NewList),
     make_one_list(T,NewList,OutList).
 
-%Получить элемент по индексу
+%РџРѕР»СѓС‡РёС‚СЊ СЌР»РµРјРµРЅС‚ РїРѕ РёРЅРґРµРєСЃСѓ
 get_elem([],_,_,Elem,Elem):-!.
 get_elem([H|T],InitNum,Num,InitElem,Elem):-
     InitNum = Num,
